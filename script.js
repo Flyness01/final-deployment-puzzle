@@ -21,16 +21,16 @@ const hints = [
 const logs = [
   ["09:12:11", "500", "cache miss: confidence temporarily replaced by impostor syndrome"],
   ["09:18:03", "418", "teapot refused to deploy because it was emotionally attached to staging"],
-  ["09:24:17", "200", "trace=[s] handoff checkpoint accepted"],
+  ["09:24:17", "200", "trace=[s] handoff checkpoint accepted", "s"],
   ["09:26:45", "404", "missing context: found later in a patient explanation"],
-  ["09:31:08", "200", "trace=[t] onboarding guardrail held"],
-  ["09:37:20", "200", "trace=[e] review comment resolved without ego"],
+  ["09:31:08", "200", "trace=[t] onboarding guardrail held", "t"],
+  ["09:37:20", "200", "trace=[e] review comment resolved without ego", "e"],
   ["09:42:56", "302", "redirected praise to the whole team, classy but suspicious"],
-  ["09:48:02", "200", "trace=[a] async question answered before it became a blocker"],
+  ["09:48:02", "200", "trace=[a] async question answered before it became a blocker", "a"],
   ["09:52:19", "503", "calendar service overwhelmed by suspiciously useful meetings"],
-  ["09:58:44", "200", "trace=[d] context bundle preserved"],
+  ["09:58:44", "200", "trace=[d] context bundle preserved", "d"],
   ["10:04:19", "500", "release blocked by one last tiny impossible thing"],
-  ["10:22:44", "200", "trace=[y] final check stayed calm"]
+  ["10:22:44", "200", "trace=[y] final check stayed calm", "y"]
 ];
 
 const solved = [false, false, false, false, false];
@@ -98,6 +98,7 @@ function resolveStage(index, token) {
       reveal.classList.remove("hidden");
       reveal.scrollIntoView({ behavior: "smooth", block: "start" });
       burst();
+      floatLove(18);
       return;
     }
     showStage(index + 1);
@@ -150,21 +151,53 @@ document.querySelector(".comment-pin").addEventListener("click", event => {
 
 const logFilter = document.querySelector("#log-filter");
 const logsEl = document.querySelector("#logs");
+const assertionButtons = [...document.querySelectorAll(".assertion-list button")];
+const assertionBuffer = document.querySelector("#assertion-buffer");
+const traceBuffer = document.querySelector("#trace-buffer");
+
+function updateAssertionBuffer() {
+  const letters = assertionButtons.map(button => button.classList.contains("seen") ? button.dataset.letter : "_");
+  assertionBuffer.textContent = letters.join(" ").toUpperCase();
+}
+
+assertionButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    button.classList.add("seen");
+    updateAssertionBuffer();
+  });
+});
+
+updateAssertionBuffer();
 
 function renderLogs() {
   const query = normalize(logFilter.value);
   const visible = logs.filter(row => !query || row.some(cell => normalize(cell).includes(query)));
   logsEl.innerHTML = visible.map(row => `
-    <div class="log-line">
+    <button class="log-line" type="button" data-trace="${row[3] || ""}">
       <span>${row[0]}</span>
       <strong>${row[1]}</strong>
       <span>${row[2]}</span>
-    </div>
+    </button>
   `).join("");
+  updateTraceBuffer();
 }
 
 logFilter.addEventListener("input", renderLogs);
 renderLogs();
+
+logsEl.addEventListener("click", event => {
+  const row = event.target.closest(".log-line");
+  if (!row || !row.dataset.trace) return;
+  row.classList.add("selected");
+  updateTraceBuffer();
+});
+
+function updateTraceBuffer() {
+  const selected = [...logsEl.querySelectorAll(".log-line.selected")]
+    .map(row => row.dataset.trace)
+    .filter(Boolean);
+  traceBuffer.textContent = selected.length ? selected.join(" ").toUpperCase() : "_ _ _ _ _ _";
+}
 
 const flags = [...document.querySelectorAll(".flag input")];
 const flagToken = document.querySelector("#flag-token");
@@ -180,6 +213,10 @@ updateFlags();
 
 document.querySelector("#restart").addEventListener("click", () => {
   window.location.reload();
+});
+
+document.querySelector("#love-button").addEventListener("click", () => {
+  floatLove(14);
 });
 
 function animateSignal() {
@@ -242,6 +279,31 @@ function burst() {
       easing: "cubic-bezier(.17,.67,.28,1)"
     }).onfinish = () => piece.remove();
     document.body.appendChild(piece);
+  }
+}
+
+function floatLove(count) {
+  const layer = document.querySelector("#love-layer");
+  if (!layer) return;
+
+  for (let i = 0; i < count; i++) {
+    const bubble = document.createElement("span");
+    const size = 30 + Math.random() * 34;
+    const start = 16 + Math.random() * 68;
+    const drift = Math.random() * 160 - 80;
+    bubble.className = "love-float";
+    bubble.style.setProperty("--size", `${size}px`);
+    bubble.style.left = `${start}%`;
+    bubble.animate([
+      { transform: "translate(-50%, 20px) scale(0.62)", opacity: 0 },
+      { transform: "translate(-50%, -24px) scale(1)", opacity: 0.95, offset: 0.16 },
+      { transform: `translate(calc(-50% + ${drift}px), -420px) scale(1.18)`, opacity: 0 }
+    ], {
+      duration: 2600 + Math.random() * 1000,
+      delay: i * 90,
+      easing: "cubic-bezier(.18,.8,.25,1)"
+    }).onfinish = () => bubble.remove();
+    layer.appendChild(bubble);
   }
 }
 

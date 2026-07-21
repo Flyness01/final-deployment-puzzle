@@ -109,6 +109,18 @@ Received: contract exceeded, which is technically suspicious
 Summary:
   6 failed, 2 passed, 0 flaky, 1 mentor suspiciously effective
             </pre>
+            <div class="assertion-list" aria-label="Failed assertions">
+              <button type="button" data-letter="s">should Stabilize the scary first week</button>
+              <button type="button" data-letter="i">should Invite questions before they become blockers</button>
+              <button type="button" data-letter="g">should Give context without making it a lecture</button>
+              <button type="button" data-letter="n">should Notice when someone is quietly stuck</button>
+              <button type="button" data-letter="a">should Ask better questions than "does that make sense?"</button>
+              <button type="button" data-letter="l">should Leave things clearer than you found them</button>
+            </div>
+            <div class="clue-buffer">
+              <span>Initial buffer</span>
+              <strong id="assertion-buffer">_ _ _ _ _ _</strong>
+            </div>
           </div>
 
           <form class="answer-row" data-answer="0">
@@ -134,6 +146,10 @@ Summary:
             <input id="log-filter" autocomplete="off" placeholder="try a status code">
           </div>
           <div class="logs" id="logs" aria-live="polite"></div>
+          <div class="clue-buffer log-buffer">
+            <span>Trace buffer</span>
+            <strong id="trace-buffer">_ _ _ _ _ _</strong>
+          </div>
 
           <form class="answer-row" data-answer="1">
             <label for="answer-1">Second token</label>
@@ -234,23 +250,37 @@ Summary:
 
         <section class="reveal hidden" id="reveal">
           <div class="confetti" aria-hidden="true"></div>
+          <div class="love-layer" id="love-layer" aria-hidden="true"></div>
           <p class="eyebrow">Deployment complete</p>
           <h2>Appreciation successfully delivered.</h2>
-          <p class="thanks">
-            Thank you for an amazing summer: for the thoughtful reviews, the patient explanations,
-            the jokes between meetings, and the way you made learning feel possible.
-          </p>
-          <p class="thanks">
-            I am leaving with better instincts, better stories, and a very real gratitude cache.
-            Final status: deeply appreciated.
-          </p>
+          <article class="love-note" aria-label="Thank you note">
+            <div class="note-meta">
+              <span>final message</span>
+              <strong>two-summer handoff</strong>
+            </div>
+            <p>
+              Thank you for the past two summers: for the thoughtful reviews, the patient explanations,
+              the context you shared so generously, and the way you made learning feel safe, real, and exciting.
+            </p>
+            <p>
+              Coming back as a returning intern made me appreciate even more how much growth happens when
+              someone gives you room to try, asks better questions, and helps you see the engineer you are becoming.
+            </p>
+            <p>
+              I am leaving with sharper instincts, deeper confidence, better stories, and a very full gratitude cache.
+              Final status: sincerely, deeply appreciated.
+            </p>
+          </article>
           <div class="scorecard" aria-label="Mentor review scorecard">
-            <div><span>Kindness</span><strong>Exceeded</strong></div>
+            <div><span>Learning curve</span><strong>Climbed</strong></div>
             <div><span>Debugging patience</span><strong>Legendary</strong></div>
-            <div><span>Team energy</span><strong>10/10</strong></div>
-            <div><span>Summer impact</span><strong>Unforgettable</strong></div>
+            <div><span>Growth unlocked</span><strong>So much</strong></div>
+            <div><span>Two-summer impact</span><strong>Unforgettable</strong></div>
           </div>
-          <button class="primary" id="restart" type="button">Run it back</button>
+          <div class="reveal-actions">
+            <button class="primary love-button" id="love-button" type="button">Send love effect</button>
+            <button class="secondary" id="restart" type="button">Run it back</button>
+          </div>
         </section>
       </main>
     </div>

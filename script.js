@@ -2,30 +2,35 @@ const answers = ["signal", "steady", "anchor", "ship"];
 const hints = [
   {
     title: "Build Hint",
-    copy: "Read the failing test name like a dramatic commit message. The all-caps return value is the token."
+    copy: "Look at the failed assertion titles only. Their first letters are less accidental than they look."
   },
   {
     title: "Logs Hint",
-    copy: "The healthy HTTP status is 200. Filter for it, then look for the gratitude metadata."
+    copy: "Filter for status 200. Read only the bracketed trace markers, top to bottom."
   },
   {
     title: "Review Hint",
-    copy: "Open the review comment. The reviewer left the token as a variable name."
+    copy: "The unresolved thread has six lines. Take the first letter of each line."
   },
   {
     title: "Flags Hint",
-    copy: "Turn on the behaviors a great mentor would ship. Leave the chaotic internship anti-patterns off."
+    copy: "Select the good handoff behaviors. Their initials spell the release verb."
   }
 ];
 
 const logs = [
   ["09:12:11", "500", "cache miss: confidence temporarily replaced by impostor syndrome"],
   ["09:18:03", "418", "teapot refused to deploy because it was emotionally attached to staging"],
+  ["09:24:17", "200", "trace=[s] handoff checkpoint accepted"],
   ["09:26:45", "404", "missing context: found later in a patient explanation"],
-  ["09:37:20", "200", "mentor.signal=STEADY request_id=final-thanks latency=kind"],
-  ["09:52:08", "302", "redirected praise to the whole team, classy but suspicious"],
-  ["10:04:19", "503", "gratitude service overwhelmed by excellent code reviews"],
-  ["10:22:44", "201", "new memory created: laughing during standup without derailing standup"]
+  ["09:31:08", "200", "trace=[t] onboarding guardrail held"],
+  ["09:37:20", "200", "trace=[e] review comment resolved without ego"],
+  ["09:42:56", "302", "redirected praise to the whole team, classy but suspicious"],
+  ["09:48:02", "200", "trace=[a] async question answered before it became a blocker"],
+  ["09:52:19", "503", "calendar service overwhelmed by suspiciously useful meetings"],
+  ["09:58:44", "200", "trace=[d] context bundle preserved"],
+  ["10:04:19", "500", "release blocked by one last tiny impossible thing"],
+  ["10:22:44", "200", "trace=[y] final check stayed calm"]
 ];
 
 const solved = [false, false, false, false, false];

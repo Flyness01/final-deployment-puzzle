@@ -83,7 +83,7 @@
             </div>
             <button class="ghost" data-hint="0" type="button">Hint</button>
           </div>
-          <p class="brief">The test suite is dramatic today. One failure name contains the first deploy token, but the pipeline only accepts the value that made the test meaningful.</p>
+          <p class="brief">CI redacted the useful error. The failed assertion names are all that survived. Engineers know the test names are where people accidentally tell the truth.</p>
 
           <div class="terminal" aria-label="Fake test output">
             <div class="terminal-bar">
@@ -91,22 +91,29 @@
               <code>ci/final-deploy</code>
             </div>
             <pre>
-FAIL gratitude.spec.ts
-  ok recognizes late-night rescue reviews
-  ok keeps async patience above threshold
-  fail mentorImpact_returns_SIGNAL_when_seen()
+FAIL handoff.contract.spec.ts
+  ok preserves useful context across timezones
+  ok rejects meetings that should have been docs
 
-Expected: "ordinary summer"
-Received: "the kind where someone made space for you to learn"
+  failed assertions:
+    should Stabilize the scary first week
+    should Invite questions before they become blockers
+    should Give context without making it a lecture
+    should Notice when someone is quietly stuck
+    should Ask better questions than "does that make sense?"
+    should Leave things clearer than you found them
+
+Expected: contract holds
+Received: contract exceeded, which is technically suspicious
 
 Summary:
-  1 failed, 2 passed, 0 flaky, 1 person quietly over-appreciated
+  6 failed, 2 passed, 0 flaky, 1 mentor suspiciously effective
             </pre>
           </div>
 
           <form class="answer-row" data-answer="0">
             <label for="answer-0">First token</label>
-            <input id="answer-0" autocomplete="off" placeholder="token from the failure name">
+            <input id="answer-0" autocomplete="off" placeholder="derive it from the failed assertions">
             <button type="submit">Resolve</button>
           </form>
           <p class="feedback" id="feedback-0" role="status"></p>
@@ -120,7 +127,7 @@ Summary:
             </div>
             <button class="ghost" data-hint="1" type="button">Hint</button>
           </div>
-          <p class="brief">Someone hid the next token in production logs. Filter by the only status code that means “I’m fine, please stop asking.”</p>
+          <p class="brief">The deploy logs are noisy. Filter to healthy requests, keep their original order, and read the bracketed trace markers.</p>
 
           <div class="log-tools">
             <label for="log-filter">Filter logs</label>
@@ -130,7 +137,7 @@ Summary:
 
           <form class="answer-row" data-answer="1">
             <label for="answer-1">Second token</label>
-            <input id="answer-1" autocomplete="off" placeholder="token from the healthy line">
+            <input id="answer-1" autocomplete="off" placeholder="token from healthy trace markers">
             <button type="submit">Resolve</button>
           </form>
           <p class="feedback" id="feedback-1" role="status"></p>
@@ -144,23 +151,31 @@ Summary:
             </div>
             <button class="ghost" data-hint="2" type="button">Hint</button>
           </div>
-          <p class="brief">The third token is hiding in a pull request. Engineers know the real truth is often in the comments.</p>
+          <p class="brief">The third token is hiding in a pull request. Open the unresolved review thread and read the nits like a reviewer who has seen things.</p>
 
           <div class="review">
-            <div class="file-tab">appreciation.ts</div>
-            <div class="diff-line remove">- const summer = "good";</div>
-            <div class="diff-line add">+ const summer = "unreasonably good";</div>
-            <div class="diff-line context">  const support = reviews + pairing + jokes;</div>
-            <button class="comment-pin" type="button" aria-expanded="false" aria-controls="review-comment">3</button>
+            <div class="file-tab">handoff-summary.ts</div>
+            <div class="diff-line remove">- const ending = summarize(summer);</div>
+            <div class="diff-line add">+ const ending = preserveWhatActuallyMattered(summer);</div>
+            <div class="diff-line context">  const support = reviews + pairing + context + jokes;</div>
+            <button class="comment-pin" type="button" aria-expanded="false" aria-controls="review-comment">6</button>
             <div class="review-comment" id="review-comment" hidden>
-              <strong>nit:</strong> this deserves a stronger variable name. Try <code>ANCHOR</code>. Also, approving because the vibes compile.
+              <strong>unresolved thread</strong>
+              <ul>
+                <li>Always leave the next person with a map.</li>
+                <li>Name the weird edge case before it names you.</li>
+                <li>Context is not clutter when it prevents panic.</li>
+                <li>Hold the standard and the person at the same time.</li>
+                <li>Offer the extra explanation before someone has to ask twice.</li>
+                <li>Review like the author is becoming braver.</li>
+              </ul>
             </div>
             <div class="diff-line context">  return support.map(moment =&gt; remember(moment));</div>
           </div>
 
           <form class="answer-row" data-answer="2">
             <label for="answer-2">Third token</label>
-            <input id="answer-2" autocomplete="off" placeholder="token from the review">
+            <input id="answer-2" autocomplete="off" placeholder="token from the review thread">
             <button type="submit">Resolve</button>
           </form>
           <p class="feedback" id="feedback-2" role="status"></p>
@@ -174,14 +189,15 @@ Summary:
             </div>
             <button class="ghost" data-hint="3" type="button">Hint</button>
           </div>
-          <p class="brief">Flip the values from worst internship behavior to best mentorship behavior. The correct release shape will produce the final token.</p>
+          <p class="brief">Flip only the flags that belong in a clean handoff. The right set forms a small release verb.</p>
 
           <div class="flag-grid">
-            <label class="flag"><input type="checkbox" data-good="true"> <span>Ask thoughtful questions</span></label>
-            <label class="flag"><input type="checkbox" data-good="false"> <span>Hoard context in a private spreadsheet</span></label>
-            <label class="flag"><input type="checkbox" data-good="true"> <span>Review with patience</span></label>
-            <label class="flag"><input type="checkbox" data-good="false"> <span>Say “works on my machine” and vanish</span></label>
-            <label class="flag"><input type="checkbox" data-good="true"> <span>Make the intern feel like part of the team</span></label>
+            <label class="flag"><input type="checkbox" data-good="true"> <span>Share context before it becomes archaeology</span></label>
+            <label class="flag"><input type="checkbox" data-good="false"> <span>Hide the one useful doc in a forgotten thread</span></label>
+            <label class="flag"><input type="checkbox" data-good="true"> <span>Honor questions like they are part of the architecture</span></label>
+            <label class="flag"><input type="checkbox" data-good="false"> <span>Invent a dashboard nobody asked for at 4:58 PM</span></label>
+            <label class="flag"><input type="checkbox" data-good="true"> <span>Invite the new person into the room, not just the repo</span></label>
+            <label class="flag"><input type="checkbox" data-good="true"> <span>Pair patiently when the bug has chosen violence</span></label>
           </div>
 
           <div class="flag-output">

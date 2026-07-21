@@ -197,7 +197,7 @@ function animateSignal() {
         if (x === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = row % 2 ? "rgba(240, 210, 138, 0.28)" : "rgba(123, 220, 207, 0.34)";
+      ctx.strokeStyle = row % 2 ? "rgba(242, 208, 141, 0.3)" : "rgba(255, 195, 207, 0.34)";
       ctx.lineWidth = 2;
       ctx.stroke();
     }
@@ -205,7 +205,7 @@ function animateSignal() {
     for (let i = 0; i < 56; i++) {
       const x = (i * 83 + t * 28) % (w + 60) - 30;
       const y = (Math.sin(i * 1.7 + t) * 0.35 + 0.5) * h;
-      ctx.fillStyle = i % 5 === 0 ? "rgba(240, 210, 138, 0.9)" : "rgba(255, 255, 255, 0.48)";
+      ctx.fillStyle = i % 5 === 0 ? "rgba(242, 208, 141, 0.9)" : "rgba(255, 250, 242, 0.52)";
       ctx.fillRect(x, y, 3, 3);
     }
 
@@ -217,7 +217,7 @@ function animateSignal() {
 }
 
 function burst() {
-  const colors = ["#f0d28a", "#ffffff", "#afe5c7", "#79dccf"];
+  const colors = ["#f2d08d", "#fffaf2", "#ffc3cf", "#c5ead8"];
   for (let i = 0; i < 70; i++) {
     const piece = document.createElement("i");
     piece.style.position = "fixed";

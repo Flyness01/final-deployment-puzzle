@@ -468,29 +468,6 @@ meter {
   background: linear-gradient(135deg, #56364f, #b94f73);
 }
 
-.clue-buffer {
-  display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
-  gap: 10px;
-  align-items: center;
-  margin-top: 12px;
-  padding: 12px;
-  border: 1px dashed rgba(185, 79, 115, 0.38);
-  border-radius: 8px;
-  color: var(--ink);
-  background: #fffefd;
-}
-
-.clue-buffer span {
-  color: var(--muted);
-  font-weight: 800;
-}
-
-.clue-buffer strong {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: 0.12em;
-}
-
 pre {
   margin: 0;
   padding: 18px;
@@ -588,14 +565,11 @@ input:focus {
   color: #f2d08d;
 }
 
-.log-buffer {
-  margin: 12px 0 0;
-  background: #fff0f4;
-  color: var(--ink);
-}
-
-.log-buffer span {
+.microcopy {
+  margin: 10px 0 0;
   color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 750;
 }
 
 .review {
@@ -958,7 +932,6 @@ dialog::backdrop {
   .hero,
   .answer-row,
   .log-tools,
-  .clue-buffer,
   .scorecard,
   .token-strip {
     grid-template-columns: 1fr;

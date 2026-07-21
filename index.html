@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Final Deployment</title>
     <meta name="description" content="A small browser puzzle for an excellent engineering team.">
-    <link rel="stylesheet" href="./styles.css?v=20260720-2">
+    <link rel="stylesheet" href="./styles.css?v=20260720-3">
   </head>
   <body>
     <div class="shell">
@@ -110,19 +110,15 @@ Summary:
           <div class="evidence-panel">
             <div class="evidence-heading">
               <span>Recovered assertion index</span>
-              <small>click each row to collect the initials</small>
+              <small>sort by case id, then read the line starts</small>
             </div>
             <div class="assertion-list" aria-label="Failed assertions">
-              <button type="button" data-letter="s"><span>S</span> Stabilize the scary first week</button>
-              <button type="button" data-letter="i"><span>I</span> Invite questions before they become blockers</button>
-              <button type="button" data-letter="g"><span>G</span> Give context without making it a lecture</button>
-              <button type="button" data-letter="n"><span>N</span> Notice when someone is quietly stuck</button>
-              <button type="button" data-letter="a"><span>A</span> Ask better questions than "does that make sense?"</button>
-              <button type="button" data-letter="l"><span>L</span> Leave things clearer than you found them</button>
-            </div>
-            <div class="clue-buffer">
-              <span>Initial buffer</span>
-              <strong id="assertion-buffer">_ _ _ _ _ _</strong>
+              <button type="button"><span>C-04</span> Notice when someone is quietly stuck</button>
+              <button type="button"><span>C-01</span> Stabilize the scary first week</button>
+              <button type="button"><span>C-06</span> Leave things clearer than you found them</button>
+              <button type="button"><span>C-03</span> Give context without making it a lecture</button>
+              <button type="button"><span>C-05</span> Ask better questions than "does that make sense?"</button>
+              <button type="button"><span>C-02</span> Invite questions before they become blockers</button>
             </div>
           </div>
 
@@ -142,17 +138,14 @@ Summary:
             </div>
             <button class="ghost" data-hint="1" type="button">Hint</button>
           </div>
-          <p class="brief">The deploy logs are noisy. Filter to healthy requests, keep their original order, and read the bracketed trace markers.</p>
+          <p class="brief">The deploy logs are noisy. Filter to healthy requests, keep their original order, then convert the shard values like an old-school engineer would.</p>
 
           <div class="log-tools">
             <label for="log-filter">Filter logs</label>
             <input id="log-filter" autocomplete="off" placeholder="try a status code">
           </div>
           <div class="logs" id="logs" aria-live="polite"></div>
-          <div class="clue-buffer log-buffer">
-            <span>Trace buffer</span>
-            <strong id="trace-buffer">_ _ _ _ _ _</strong>
-          </div>
+          <p class="microcopy">Click rows to mark useful evidence. The page will not assemble the token for you.</p>
 
           <form class="answer-row" data-answer="1">
             <label for="answer-1">Second token</label>
@@ -220,7 +213,7 @@ Summary:
           </div>
 
           <div class="flag-output">
-            <span>Derived token</span>
+            <span>Selection check</span>
             <strong id="flag-token">pending</strong>
           </div>
 
@@ -296,6 +289,6 @@ Summary:
       <p id="hint-copy"></p>
     </dialog>
 
-    <script src="./script.js?v=20260720-2"></script>
+    <script src="./script.js?v=20260720-3"></script>
   </body>
 </html>

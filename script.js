@@ -2,11 +2,11 @@ const answers = ["signal", "steady", "anchor", "ship"];
 const hints = [
   {
     title: "Build Hint",
-    copy: "Look at the failed assertion titles only. Their first letters are less accidental than they look."
+    copy: "The visible order is not the execution order. Sort the recovered assertions by case ID first."
   },
   {
     title: "Logs Hint",
-    copy: "Filter for status 200. Read only the bracketed trace markers, top to bottom."
+    copy: "Filter for status 200. Convert the shard numbers with A1Z26, keeping the log order."
   },
   {
     title: "Review Hint",
@@ -21,16 +21,16 @@ const hints = [
 const logs = [
   ["09:12:11", "500", "cache miss: confidence temporarily replaced by impostor syndrome"],
   ["09:18:03", "418", "teapot refused to deploy because it was emotionally attached to staging"],
-  ["09:24:17", "200", "trace=[s] handoff checkpoint accepted", "s"],
+  ["09:24:17", "200", "shard=19 handoff checkpoint accepted"],
   ["09:26:45", "404", "missing context: found later in a patient explanation"],
-  ["09:31:08", "200", "trace=[t] onboarding guardrail held", "t"],
-  ["09:37:20", "200", "trace=[e] review comment resolved without ego", "e"],
+  ["09:31:08", "200", "shard=20 onboarding guardrail held"],
+  ["09:37:20", "200", "shard=05 review comment resolved without ego"],
   ["09:42:56", "302", "redirected praise to the whole team, classy but suspicious"],
-  ["09:48:02", "200", "trace=[a] async question answered before it became a blocker", "a"],
+  ["09:48:02", "200", "shard=01 async question answered before it became a blocker"],
   ["09:52:19", "503", "calendar service overwhelmed by suspiciously useful meetings"],
-  ["09:58:44", "200", "trace=[d] context bundle preserved", "d"],
+  ["09:58:44", "200", "shard=04 context bundle preserved"],
   ["10:04:19", "500", "release blocked by one last tiny impossible thing"],
-  ["10:22:44", "200", "trace=[y] final check stayed calm", "y"]
+  ["10:22:44", "200", "shard=25 final check stayed calm"]
 ];
 
 const solved = [false, false, false, false, false];
@@ -152,34 +152,23 @@ document.querySelector(".comment-pin").addEventListener("click", event => {
 const logFilter = document.querySelector("#log-filter");
 const logsEl = document.querySelector("#logs");
 const assertionButtons = [...document.querySelectorAll(".assertion-list button")];
-const assertionBuffer = document.querySelector("#assertion-buffer");
-const traceBuffer = document.querySelector("#trace-buffer");
-
-function updateAssertionBuffer() {
-  const letters = assertionButtons.map(button => button.classList.contains("seen") ? button.dataset.letter : "_");
-  assertionBuffer.textContent = letters.join(" ").toUpperCase();
-}
 
 assertionButtons.forEach(button => {
   button.addEventListener("click", () => {
-    button.classList.add("seen");
-    updateAssertionBuffer();
+    button.classList.toggle("seen");
   });
 });
-
-updateAssertionBuffer();
 
 function renderLogs() {
   const query = normalize(logFilter.value);
   const visible = logs.filter(row => !query || row.some(cell => normalize(cell).includes(query)));
   logsEl.innerHTML = visible.map(row => `
-    <button class="log-line" type="button" data-trace="${row[3] || ""}">
+    <button class="log-line" type="button">
       <span>${row[0]}</span>
       <strong>${row[1]}</strong>
       <span>${row[2]}</span>
     </button>
   `).join("");
-  updateTraceBuffer();
 }
 
 logFilter.addEventListener("input", renderLogs);
@@ -187,24 +176,17 @@ renderLogs();
 
 logsEl.addEventListener("click", event => {
   const row = event.target.closest(".log-line");
-  if (!row || !row.dataset.trace) return;
-  row.classList.add("selected");
-  updateTraceBuffer();
+  if (!row) return;
+  row.classList.toggle("selected");
 });
-
-function updateTraceBuffer() {
-  const selected = [...logsEl.querySelectorAll(".log-line.selected")]
-    .map(row => row.dataset.trace)
-    .filter(Boolean);
-  traceBuffer.textContent = selected.length ? selected.join(" ").toUpperCase() : "_ _ _ _ _ _";
-}
 
 const flags = [...document.querySelectorAll(".flag input")];
 const flagToken = document.querySelector("#flag-token");
 
 function updateFlags() {
   const correct = flags.every(flag => flag.checked === (flag.dataset.good === "true"));
-  flagToken.textContent = correct ? "SHIP" : "pending";
+  const checked = flags.filter(flag => flag.checked).length;
+  flagToken.textContent = correct ? "clean set" : `${checked}/4 aligned`;
   flagToken.style.color = correct ? "var(--green)" : "var(--ink)";
 }
 

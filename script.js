@@ -2,7 +2,7 @@ const answers = ["signal", "steady", "anchor", "ship"];
 const hints = [
   {
     title: "Build Hint",
-    copy: "The visible order is not the execution order. Sort the recovered assertions by case ID first."
+    copy: "The visible order is not the execution order. Sort the recovered assertions from highest severity to lowest."
   },
   {
     title: "Logs Hint",

@@ -425,7 +425,7 @@ meter {
 
 .assertion-list button {
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
+  grid-template-columns: 82px minmax(0, 1fr);
   gap: 10px;
   align-items: center;
   width: 100%;
@@ -443,7 +443,7 @@ meter {
 .assertion-list button span {
   display: grid;
   place-items: center;
-  width: 34px;
+  width: 82px;
   height: 34px;
   border-radius: 8px;
   color: #fffaf2;

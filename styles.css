@@ -382,13 +382,39 @@ meter {
   color: #d8c9d4;
 }
 
+.evidence-panel {
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid rgba(185, 79, 115, 0.2);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 253, 0.92), rgba(255, 240, 244, 0.72));
+  box-shadow: 0 14px 34px rgba(88, 52, 72, 0.08);
+}
+
+.evidence-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+}
+
+.evidence-heading span {
+  color: var(--plum);
+  font-weight: 900;
+}
+
+.evidence-heading small {
+  color: var(--muted);
+  font-weight: 750;
+}
+
 .assertion-list {
   display: grid;
   gap: 8px;
-  padding: 0 18px 18px;
 }
 
-.assertion-list button,
 .log-line {
   border: 1px solid rgba(255, 250, 242, 0.1);
   border-radius: 6px;
@@ -398,22 +424,48 @@ meter {
 }
 
 .assertion-list button {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  width: 100%;
   min-height: 38px;
-  padding: 8px 10px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.88rem;
+  padding: 10px 12px;
+  border: 1px solid rgba(185, 79, 115, 0.18);
+  border-radius: 8px;
+  color: var(--ink);
+  background: rgba(255, 254, 253, 0.78);
+  text-align: left;
+  font-weight: 750;
+  box-shadow: 0 8px 22px rgba(88, 52, 72, 0.05);
 }
 
-.assertion-list button:hover,
-.assertion-list button.seen,
+.assertion-list button span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  color: #fffaf2;
+  background: #b9aab7;
+  font-weight: 900;
+}
+
 .log-line:hover,
 .log-line.selected {
   border-color: rgba(242, 208, 141, 0.5);
   background: rgba(242, 208, 141, 0.14);
 }
 
-.assertion-list button.seen::first-letter {
-  color: #f2d08d;
+.assertion-list button:hover,
+.assertion-list button.seen {
+  border-color: rgba(185, 79, 115, 0.44);
+  background: #fff0f4;
+  transform: translateY(-1px);
+}
+
+.assertion-list button.seen span {
+  background: linear-gradient(135deg, #56364f, #b94f73);
 }
 
 .clue-buffer {
@@ -421,16 +473,16 @@ meter {
   grid-template-columns: 150px minmax(0, 1fr);
   gap: 10px;
   align-items: center;
-  margin: 0 18px 18px;
+  margin-top: 12px;
   padding: 12px;
-  border: 1px dashed rgba(242, 208, 141, 0.42);
+  border: 1px dashed rgba(185, 79, 115, 0.38);
   border-radius: 8px;
-  color: #fff8fb;
-  background: rgba(255, 250, 242, 0.08);
+  color: var(--ink);
+  background: #fffefd;
 }
 
 .clue-buffer span {
-  color: #d8c9d4;
+  color: var(--muted);
   font-weight: 800;
 }
 

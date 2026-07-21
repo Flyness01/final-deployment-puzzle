@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Final Deployment</title>
+    <meta name="description" content="A small browser puzzle for an excellent engineering team.">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Deployment navigation">
+        <div class="brand">
+          <div class="mark" aria-hidden="true">FD</div>
+          <div>
+            <p class="eyebrow">Internship Ops</p>
+            <h1>The Final Deployment</h1>
+          </div>
+        </div>
+
+        <div class="status-card">
+          <span class="pulse"></span>
+          <div>
+            <strong>Release blocked</strong>
+            <span id="release-status">4 incidents open</span>
+          </div>
+        </div>
+
+        <nav class="steps" aria-label="Puzzle stages">
+          <button class="step active" data-step="0">
+            <span>01</span>
+            <strong>Build</strong>
+            <small id="state-0">Investigating</small>
+          </button>
+          <button class="step locked" data-step="1">
+            <span>02</span>
+            <strong>Logs</strong>
+            <small id="state-1">Locked</small>
+          </button>
+          <button class="step locked" data-step="2">
+            <span>03</span>
+            <strong>Review</strong>
+            <small id="state-2">Locked</small>
+          </button>
+          <button class="step locked" data-step="3">
+            <span>04</span>
+            <strong>Flags</strong>
+            <small id="state-3">Locked</small>
+          </button>
+          <button class="step locked" data-step="4">
+            <span>05</span>
+            <strong>Ship</strong>
+            <small id="state-4">Locked</small>
+          </button>
+        </nav>
+
+        <div class="mini-note">
+          <strong>Operator note</strong>
+          <p>This is solvable entirely in the browser. No downloads, no terminal, no suspicious company laptop behavior.</p>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <section class="hero">
+          <canvas id="signal-canvas" width="960" height="320" aria-hidden="true"></canvas>
+          <div class="hero-copy">
+            <p class="eyebrow">Incident FD-2026-THANKS</p>
+            <h2>One last release is waiting for human judgment.</h2>
+            <p>Resolve the four incidents. Collect the deploy phrase. Ship the final artifact.</p>
+          </div>
+          <div class="hero-panel" aria-label="Current release health">
+            <span>Pipeline</span>
+            <strong id="pipeline-score">17%</strong>
+            <meter id="pipeline-meter" min="0" max="100" value="17">17%</meter>
+          </div>
+        </section>
+
+        <section class="board" id="stage-build">
+          <div class="stage-heading">
+            <div>
+              <p class="eyebrow">Incident 01</p>
+              <h3>Failing Build</h3>
+            </div>
+            <button class="ghost" data-hint="0" type="button">Hint</button>
+          </div>
+          <p class="brief">The test suite is dramatic today. One failure name contains the first deploy token, but the pipeline only accepts the value that made the test meaningful.</p>
+
+          <div class="terminal" aria-label="Fake test output">
+            <div class="terminal-bar">
+              <span></span><span></span><span></span>
+              <code>ci/final-deploy</code>
+            </div>
+            <pre>
+FAIL gratitude.spec.ts
+  ok recognizes late-night rescue reviews
+  ok keeps async patience above threshold
+  fail mentorImpact_returns_SIGNAL_when_seen()
+
+Expected: "ordinary summer"
+Received: "the kind where someone made space for you to learn"
+
+Summary:
+  1 failed, 2 passed, 0 flaky, 1 person quietly over-appreciated
+            </pre>
+          </div>
+
+          <form class="answer-row" data-answer="0">
+            <label for="answer-0">First token</label>
+            <input id="answer-0" autocomplete="off" placeholder="token from the failure name">
+            <button type="submit">Resolve</button>
+          </form>
+          <p class="feedback" id="feedback-0" role="status"></p>
+        </section>
+
+        <section class="board hidden" id="stage-logs">
+          <div class="stage-heading">
+            <div>
+              <p class="eyebrow">Incident 02</p>
+              <h3>Log Dive</h3>
+            </div>
+            <button class="ghost" data-hint="1" type="button">Hint</button>
+          </div>
+          <p class="brief">Someone hid the next token in production logs. Filter by the only status code that means “I’m fine, please stop asking.”</p>
+
+          <div class="log-tools">
+            <label for="log-filter">Filter logs</label>
+            <input id="log-filter" autocomplete="off" placeholder="try a status code">
+          </div>
+          <div class="logs" id="logs" aria-live="polite"></div>
+
+          <form class="answer-row" data-answer="1">
+            <label for="answer-1">Second token</label>
+            <input id="answer-1" autocomplete="off" placeholder="token from the healthy line">
+            <button type="submit">Resolve</button>
+          </form>
+          <p class="feedback" id="feedback-1" role="status"></p>
+        </section>
+
+        <section class="board hidden" id="stage-review">
+          <div class="stage-heading">
+            <div>
+              <p class="eyebrow">Incident 03</p>
+              <h3>Code Review</h3>
+            </div>
+            <button class="ghost" data-hint="2" type="button">Hint</button>
+          </div>
+          <p class="brief">The third token is hiding in a pull request. Engineers know the real truth is often in the comments.</p>
+
+          <div class="review">
+            <div class="file-tab">appreciation.ts</div>
+            <div class="diff-line remove">- const summer = "good";</div>
+            <div class="diff-line add">+ const summer = "unreasonably good";</div>
+            <div class="diff-line context">  const support = reviews + pairing + jokes;</div>
+            <button class="comment-pin" type="button" aria-expanded="false" aria-controls="review-comment">3</button>
+            <div class="review-comment" id="review-comment" hidden>
+              <strong>nit:</strong> this deserves a stronger variable name. Try <code>ANCHOR</code>. Also, approving because the vibes compile.
+            </div>
+            <div class="diff-line context">  return support.map(moment =&gt; remember(moment));</div>
+          </div>
+
+          <form class="answer-row" data-answer="2">
+            <label for="answer-2">Third token</label>
+            <input id="answer-2" autocomplete="off" placeholder="token from the review">
+            <button type="submit">Resolve</button>
+          </form>
+          <p class="feedback" id="feedback-2" role="status"></p>
+        </section>
+
+        <section class="board hidden" id="stage-flags">
+          <div class="stage-heading">
+            <div>
+              <p class="eyebrow">Incident 04</p>
+              <h3>Feature Flags</h3>
+            </div>
+            <button class="ghost" data-hint="3" type="button">Hint</button>
+          </div>
+          <p class="brief">Flip the values from worst internship behavior to best mentorship behavior. The correct release shape will produce the final token.</p>
+
+          <div class="flag-grid">
+            <label class="flag"><input type="checkbox" data-good="true"> <span>Ask thoughtful questions</span></label>
+            <label class="flag"><input type="checkbox" data-good="false"> <span>Hoard context in a private spreadsheet</span></label>
+            <label class="flag"><input type="checkbox" data-good="true"> <span>Review with patience</span></label>
+            <label class="flag"><input type="checkbox" data-good="false"> <span>Say “works on my machine” and vanish</span></label>
+            <label class="flag"><input type="checkbox" data-good="true"> <span>Make the intern feel like part of the team</span></label>
+          </div>
+
+          <div class="flag-output">
+            <span>Derived token</span>
+            <strong id="flag-token">pending</strong>
+          </div>
+
+          <form class="answer-row" data-answer="3">
+            <label for="answer-3">Fourth token</label>
+            <input id="answer-3" autocomplete="off" placeholder="token after flags are correct">
+            <button type="submit">Resolve</button>
+          </form>
+          <p class="feedback" id="feedback-3" role="status"></p>
+        </section>
+
+        <section class="board hidden" id="stage-ship">
+          <div class="stage-heading">
+            <div>
+              <p class="eyebrow">Final Gate</p>
+              <h3>Ship Appreciation</h3>
+            </div>
+          </div>
+          <p class="brief">Enter the deploy phrase using the four resolved tokens, separated by hyphens.</p>
+
+          <div class="token-strip" id="token-strip"></div>
+
+          <form class="answer-row final-answer" data-answer="4">
+            <label for="answer-4">Deploy phrase</label>
+            <input id="answer-4" autocomplete="off" placeholder="TOKEN-TOKEN-TOKEN-TOKEN">
+            <button type="submit">Deploy</button>
+          </form>
+          <p class="feedback" id="feedback-4" role="status"></p>
+        </section>
+
+        <section class="reveal hidden" id="reveal">
+          <div class="confetti" aria-hidden="true"></div>
+          <p class="eyebrow">Deployment complete</p>
+          <h2>Appreciation successfully delivered.</h2>
+          <p class="thanks">
+            Thank you for an amazing summer: for the thoughtful reviews, the patient explanations,
+            the jokes between meetings, and the way you made learning feel possible.
+          </p>
+          <p class="thanks">
+            I am leaving with better instincts, better stories, and a very real gratitude cache.
+            Final status: deeply appreciated.
+          </p>
+          <div class="scorecard" aria-label="Mentor review scorecard">
+            <div><span>Kindness</span><strong>Exceeded</strong></div>
+            <div><span>Debugging patience</span><strong>Legendary</strong></div>
+            <div><span>Team energy</span><strong>10/10</strong></div>
+            <div><span>Summer impact</span><strong>Unforgettable</strong></div>
+          </div>
+          <button class="primary" id="restart" type="button">Run it back</button>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="hint-dialog">
+      <form method="dialog">
+        <button class="close" aria-label="Close hint">x</button>
+      </form>
+      <h3 id="hint-title">Hint</h3>
+      <p id="hint-copy"></p>
+    </dialog>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
